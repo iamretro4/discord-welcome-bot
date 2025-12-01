@@ -22,6 +22,13 @@ const client = new Client({
   ] 
 });
 
+// Debug: Log all environment variables (masked for security)
+console.log('🔍 Environment check:');
+console.log('   DISCORD_BOT_TOKEN:', process.env.DISCORD_BOT_TOKEN ? '✅ Set (' + process.env.DISCORD_BOT_TOKEN.substring(0, 20) + '...)' : '❌ Missing');
+console.log('   SUPABASE_ANON_KEY:', process.env.SUPABASE_ANON_KEY ? '✅ Set (' + process.env.SUPABASE_ANON_KEY.substring(0, 20) + '...)' : '❌ Missing');
+console.log('   WELCOME_FUNCTION_URL:', process.env.WELCOME_FUNCTION_URL || 'Using default');
+console.log('');
+
 const DISCORD_BOT_TOKEN = process.env.DISCORD_BOT_TOKEN;
 const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;
 const WELCOME_FUNCTION_URL = process.env.WELCOME_FUNCTION_URL || 
@@ -30,14 +37,31 @@ const WELCOME_CHANNEL_ID = process.env.WELCOME_CHANNEL_ID; // Optional: specific
 
 if (!DISCORD_BOT_TOKEN) {
   console.error('❌ Error: DISCORD_BOT_TOKEN is required!');
-  console.error('   For Railway: Set it in Railway Dashboard → Variables tab');
+  console.error('');
+  console.error('💡 Railway Troubleshooting:');
+  console.error('   1. Go to Railway Dashboard → Your Project');
+  console.error('   2. Click on your SERVICE (not just project)');
+  console.error('   3. Go to Variables tab');
+  console.error('   4. Make sure variable name is exactly: DISCORD_BOT_TOKEN');
+  console.error('   5. Check there are no extra spaces in the name or value');
+  console.error('   6. After adding, Railway should auto-restart');
+  console.error('   7. If still not working, try manually redeploying');
+  console.error('');
   console.error('   For local: Set it in your .env file');
   process.exit(1);
 }
 
 if (!SUPABASE_ANON_KEY) {
   console.error('❌ Error: SUPABASE_ANON_KEY is required!');
-  console.error('   For Railway: Set it in Railway Dashboard → Variables tab');
+  console.error('');
+  console.error('💡 Railway Troubleshooting:');
+  console.error('   1. Go to Railway Dashboard → Your Project');
+  console.error('   2. Click on your SERVICE (not just project)');
+  console.error('   3. Go to Variables tab');
+  console.error('   4. Make sure variable name is exactly: SUPABASE_ANON_KEY');
+  console.error('   5. Check there are no extra spaces in the name or value');
+  console.error('   6. After adding, Railway should auto-restart');
+  console.error('');
   console.error('   For local: Set it in your .env file');
   process.exit(1);
 }
