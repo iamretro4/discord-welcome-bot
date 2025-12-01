@@ -3,7 +3,15 @@
 // Calls the Supabase discord-welcome function
 
 const { Client, GatewayIntentBits } = require('discord.js');
-require('dotenv').config();
+
+// Load environment variables from .env file (for local development)
+// Railway and other platforms use environment variables directly
+try {
+  require('dotenv').config();
+} catch (error) {
+  // dotenv not available or .env file not found - use environment variables directly
+  // This is fine for Railway and other cloud platforms
+}
 
 const client = new Client({ 
   intents: [
@@ -22,13 +30,15 @@ const WELCOME_CHANNEL_ID = process.env.WELCOME_CHANNEL_ID; // Optional: specific
 
 if (!DISCORD_BOT_TOKEN) {
   console.error('❌ Error: DISCORD_BOT_TOKEN is required!');
-  console.error('   Please set it in your .env file');
+  console.error('   For Railway: Set it in Railway Dashboard → Variables tab');
+  console.error('   For local: Set it in your .env file');
   process.exit(1);
 }
 
 if (!SUPABASE_ANON_KEY) {
   console.error('❌ Error: SUPABASE_ANON_KEY is required!');
-  console.error('   Please set it in your .env file');
+  console.error('   For Railway: Set it in Railway Dashboard → Variables tab');
+  console.error('   For local: Set it in your .env file');
   process.exit(1);
 }
 
