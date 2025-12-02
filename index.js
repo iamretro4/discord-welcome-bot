@@ -16,9 +16,8 @@ try {
 const client = new Client({ 
   intents: [
     GatewayIntentBits.Guilds, 
-    GatewayIntentBits.GuildMembers,
-    GatewayIntentBits.GuildMessages,
-    GatewayIntentBits.MessageContent
+    GatewayIntentBits.GuildMembers  // Required for guildMemberAdd event
+    // Note: GuildMembers is a privileged intent that must be enabled in Discord Developer Portal
   ] 
 });
 
